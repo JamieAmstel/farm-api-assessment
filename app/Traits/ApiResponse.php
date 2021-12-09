@@ -27,7 +27,7 @@ trait ApiResponse
     }
 
     /**
-     * Retuen error JSON
+     * Return error JSON
      *
      * @param null $data
      * @param string|null $message
