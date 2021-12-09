@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Traits\ApiResponse;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rules\Password;
 use Auth;
 
 /**
@@ -24,11 +26,19 @@ class AuthController extends Controller
     public function register(Request $request)
     {
 
-        $data = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|unique:users,email',
-            'password' => 'required|string|min:6|confirmed'
+        $validator = Validator::make($request->all(), [
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'unique:users,email'],
+            'password' => ['required', 'string', Password::min(8)->mixedCase()->symbols(), 'confirmed'],
         ]);
+
+        if ($validator->fails()) {
+            return $this->error([
+                $validator->messages()
+            ], '', 401);
+        }
+
+        $data = $validator->safe()->only(['name', 'email', 'password']);
 
         $user = User::create([
             'name' => $data['name'],
