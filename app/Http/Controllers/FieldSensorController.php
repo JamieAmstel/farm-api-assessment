@@ -14,6 +14,24 @@ class FieldSensorController extends Controller
     use ApiResponse;
 
     /**
+     * @OA\Get(
+     *      path="/fields/{id}/sensors",
+     *      operationId="getFieldList",
+     *      tags={"Fields"},
+     *      summary="Get field information and its related sensors",
+     *      description="Returns field data and its related sensors data",
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *       ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      )
+     *     )
+     */
+
+    /**
      * Return all sensors by field
      *
      * @return \Illuminate\Http\JsonResponse

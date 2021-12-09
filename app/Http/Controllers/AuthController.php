@@ -18,6 +18,20 @@ class AuthController extends Controller
     use ApiResponse;
 
     /**
+     * @OA\Post(
+     *      path="/auth/register",
+     *      operationId="storeUser",
+     *      tags={"User"},
+     *      summary="Store new user",
+     *      description="Returns user data",
+     *      @OA\Response(
+     *          response=201,
+     *          description="Successful operation",
+     *       )
+     * )
+     */
+
+    /**
      * Create the user
      *
      * @param Request $request
@@ -53,6 +67,20 @@ class AuthController extends Controller
     }
 
     /**
+     * @OA\Post(
+     *      path="/auth/login",
+     *      operationId="authenticateUser",
+     *      tags={"User"},
+     *      summary="Authenticate user",
+     *      description="Returns user data",
+     *      @OA\Response(
+     *          response=201,
+     *          description="Successful operation",
+     *       )
+     * )
+     */
+
+    /**
      * Authenticate user
      *
      * @param Request $request
@@ -75,6 +103,24 @@ class AuthController extends Controller
         ]);
 
     }
+
+    /**
+     * @OA\Post(
+     *      path="/auth/logout",
+     *      operationId="logoutUser",
+     *      tags={"User"},
+     *      summary="Logout user",
+     *      description="Returns logged out message",
+     *      @OA\Response(
+     *          response=201,
+     *          description="Successful operation",
+     *       ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      )
+     * )
+     */
 
     /**
      * Destroy user tokens

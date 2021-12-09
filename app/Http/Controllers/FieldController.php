@@ -13,7 +13,26 @@ use Illuminate\Support\Facades\Validator;
  */
 class FieldController extends Controller
 {
+
     use ApiResponse;
+
+    /**
+     * @OA\Get(
+     *      path="/fields",
+     *      operationId="getFieldList",
+     *      tags={"Fields"},
+     *      summary="Get list of fields",
+     *      description="Returns list of fields",
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *       ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      )
+     *     )
+     */
 
     /**
      * Return all fields
@@ -28,6 +47,24 @@ class FieldController extends Controller
             'fields' => $fields
         ]);
     }
+
+    /**
+     * @OA\Post(
+     *      path="/fields",
+     *      operationId="storeField",
+     *      tags={"Fields"},
+     *      summary="Store new field",
+     *      description="Returns field data",
+     *      @OA\Response(
+     *          response=201,
+     *          description="Successful operation",
+     *       ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      )
+     * )
+     */
 
     /**
      * Store a new field
@@ -56,6 +93,37 @@ class FieldController extends Controller
     }
 
     /**
+     * @OA\Get(
+     *      path="/fields/{id}",
+     *      operationId="getFieldById",
+     *      tags={"Fields"},
+     *      summary="Get field information",
+     *      description="Returns field data",
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="Field id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *       ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Resource Not Found"
+     *      )
+     * )
+     */
+
+    /**
      * Return a single field
      *
      * @param $id
@@ -70,6 +138,40 @@ class FieldController extends Controller
         ]);
 
     }
+
+    /**
+     * @OA\Patch(
+     *      path="/fields/{id}",
+     *      operationId="updateField",
+     *      tags={"Fields"},
+     *      summary="Update existing field",
+     *      description="Returns updated field data",
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="Field id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\RequestBody(
+     *          required=true,
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *       ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Resource Not Found"
+     *      )
+     * )
+     */
 
     /**
      * Update a field
@@ -99,6 +201,38 @@ class FieldController extends Controller
             'field' => $field
         ]);
     }
+
+    /**
+     * @OA\Delete(
+     *      path="/fields/{id}",
+     *      operationId="deleteField",
+     *      tags={"Fields"},
+     *      summary="Delete existing field",
+     *      description="Deletes a record and returns no content",
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="Field id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *          @OA\JsonContent()
+     *       ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Resource Not Found"
+     *      )
+     * )
+     */
 
     /**
      * Destroy a field

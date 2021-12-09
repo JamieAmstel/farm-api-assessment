@@ -17,6 +17,24 @@ class UserProfileController extends Controller
     use ApiResponse;
 
     /**
+     * @OA\Get(
+     *      path="/profile",
+     *      operationId="getProfile",
+     *      tags={"Profile"},
+     *      summary="Get profile",
+     *      description="Returns profile data",
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *       ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      )
+     *     )
+     */
+
+    /**
      * Return authenticated user
      *
      * @return \Illuminate\Http\JsonResponse
@@ -27,6 +45,31 @@ class UserProfileController extends Controller
             'user' => Auth::user()
         ]);
     }
+
+    /**
+     * @OA\Patch(
+     *      path="/profile",
+     *      operationId="updateProfile",
+     *      tags={"Profile"},
+     *      summary="Update authenticated user",
+     *      description="Returns authenticated user data",
+     *      @OA\RequestBody(
+     *          required=true,
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *       ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Resource Not Found"
+     *      )
+     * )
+     */
 
     /**
      * Update authenticated user
