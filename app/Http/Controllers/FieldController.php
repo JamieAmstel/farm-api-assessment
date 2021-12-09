@@ -75,6 +75,8 @@ class FieldController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $field = Field::findOrFail($id);
+
         $validator = Validator::make($request->all(), [
             'name' => ['required', 'string', 'max:100'],
         ]);
@@ -87,7 +89,7 @@ class FieldController extends Controller
 
         $data = $validator->safe()->only(['name']);
 
-        $field = Field::find($id)->update($data);
+        $field->update($data);
 
         return $this->success([
             'field' => $field
