@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserProfileController;
+use App\Http\Controllers\FieldController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -24,4 +25,10 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
 
     Route::get('/profile', [UserProfileController::class, 'index']);
     Route::post('/profile', [UserProfileController::class, 'update']);
+
+    Route::get('/fields', [FieldController::class, 'index']);
+    Route::post('/fields', [FieldController::class, 'store']);
+    Route::get('/fields/{id}', [FieldController::class, 'show']);
+    Route::patch('/fields/{id}', [FieldController::class, 'update']);
+    Route::delete('/fields/{id}', [FieldController::class, 'destroy']);
 });
