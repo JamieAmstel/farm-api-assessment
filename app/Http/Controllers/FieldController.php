@@ -7,6 +7,10 @@ use App\Traits\ApiResponse;
 use App\Models\Field;
 use Illuminate\Support\Facades\Validator;
 
+/**
+ * Class FieldController
+ * @package App\Http\Controllers
+ */
 class FieldController extends Controller
 {
     use ApiResponse;

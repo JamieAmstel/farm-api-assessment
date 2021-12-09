@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\FieldController;
 use App\Http\Controllers\SensorController;
+use App\Http\Controllers\FieldSensorController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,4 +38,6 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
     Route::get('/sensors/{id}', [SensorController::class, 'show']);
     Route::patch('/sensors/{id}', [SensorController::class, 'update']);
     Route::delete('/sensors/{id}', [SensorController::class, 'destroy']);
+
+    Route::get('/fields/{id}/sensors', [FieldSensorController::class, 'index']);
 });
